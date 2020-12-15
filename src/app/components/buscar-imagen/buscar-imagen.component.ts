@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./buscar-imagen.component.css']
 })
 export class BuscarImagenComponent implements OnInit {
+  nombreImagen: string;
 
-  constructor() { }
+  constructor() {
+    this.nombreImagen = '';
+   }
 
   ngOnInit(): void {
+  }
+
+  buscarImagenes() {
+    console.log(this.nombreImagen);
   }
 
 }
