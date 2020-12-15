@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "pixabay"
+  "defaultProject": "pixabay",
+  "cli": {
+    "analytics": false
+  }
 }
