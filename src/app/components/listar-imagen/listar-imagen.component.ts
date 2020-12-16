@@ -11,10 +11,12 @@ export class ListarImagenComponent implements OnInit {
   termino = '';
   suscription: Subscription;
   listImagenes: any[] = [];
+  loading = false;
 
   constructor(private _imagenService: ImagenService) { 
     this.suscription = this._imagenService.getTerminoBusqueda().subscribe(data => {
       this.termino = data;
+      this.loading = true;
       this.obtenerImagenes();
     })
   }
@@ -24,7 +26,7 @@ export class ListarImagenComponent implements OnInit {
 
   obtenerImagenes() {
     this._imagenService.getImagenes(this.termino).subscribe(data => {
-      console.log(data);
+      this.loading = false;
 
       if(data.hits.length === 0){
         this._imagenService.setError('Opss.. no encontramos ningun resultado');
@@ -34,6 +36,7 @@ export class ListarImagenComponent implements OnInit {
       this.listImagenes = data.hits;
     }, error => {
       this._imagenService.setError('Opss.. ocurrio un error');
+      this.loading = false;
     })
   }
 
