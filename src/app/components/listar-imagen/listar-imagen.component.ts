@@ -24,6 +24,13 @@ export class ListarImagenComponent implements OnInit {
   obtenerImagenes() {
     this._imagenService.getImagenes(this.termino).subscribe(data => {
       console.log(data);
+
+      if(data.hits.length === 0){
+        this._imagenService.setError('Opss.. no encontramos ningun resultado');
+        return;
+      }
+    }, error => {
+      this._imagenService.setError('Opss.. ocurrio un error');
     })
   }
 
