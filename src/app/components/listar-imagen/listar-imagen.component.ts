@@ -30,6 +30,7 @@ export class ListarImagenComponent implements OnInit {
   obtenerImagenes() {
     this._imagenService.getImagenes(this.termino).subscribe(data => {
       this.loading = false;
+      this.paginaActual = 1;
       console.log(data);
       if(data.hits.length === 0){
         this._imagenService.setError('Opss.. no encontramos ningun resultado');
@@ -50,6 +51,24 @@ export class ListarImagenComponent implements OnInit {
 
   paginaPosterior() {
     this.paginaActual++;
+  }
+
+  paginaAnteriorClass() {
+
+    if(this.paginaActual === 1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  paginaPosteriorClass() {
+
+    if(this.paginaActual === this.calcularTotalPaginas) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }
