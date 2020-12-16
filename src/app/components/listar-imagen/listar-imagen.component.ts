@@ -27,7 +27,7 @@ export class ListarImagenComponent implements OnInit {
   obtenerImagenes() {
     this._imagenService.getImagenes(this.termino).subscribe(data => {
       this.loading = false;
-
+      console.log(data);
       if(data.hits.length === 0){
         this._imagenService.setError('Opss.. no encontramos ningun resultado');
         return;
