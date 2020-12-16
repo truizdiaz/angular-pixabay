@@ -9,7 +9,8 @@ import { ImagenService } from 'src/app/services/imagen.service';
 })
 export class ListarImagenComponent implements OnInit {
   termino = '';
-  suscription: Subscription
+  suscription: Subscription;
+  listImagenes: any[] = [];
 
   constructor(private _imagenService: ImagenService) { 
     this.suscription = this._imagenService.getTerminoBusqueda().subscribe(data => {
@@ -29,6 +30,8 @@ export class ListarImagenComponent implements OnInit {
         this._imagenService.setError('Opss.. no encontramos ningun resultado');
         return;
       }
+
+      this.listImagenes = data.hits;
     }, error => {
       this._imagenService.setError('Opss.. ocurrio un error');
     })
